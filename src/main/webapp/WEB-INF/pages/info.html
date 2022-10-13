@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <style>
+        table {
+            width: 50%;
+            background: white;
+            border-spacing: 1px;
+        }
+
+        td, th {
+            padding: 7px;
+        }
+
+    </style>
+</head>
+<body>
+<br>
+<h1>Список пользователей</h1>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Имя пользователя</th>
+        <th>Возраст</th>
+
+
+    </tr>
+    <tbody>
+
+    <tr th:each="user : ${users}">
+        <td th:utext="${user.id}"></td>
+        <td th:utext="${user.name}"></td>
+        <td th:utext="${user.age}"></td>
+    </tr>
+
+    </tbody>
+</table>
+<br/>
+<form th:action="@{/users}">
+    <button type="submit">Управлять списком</button>
+</form>
+<br>
+</body>
+</html>

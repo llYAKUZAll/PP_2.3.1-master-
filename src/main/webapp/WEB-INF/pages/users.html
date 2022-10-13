@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> Управление списком</title>
+    <style>
+        table {
+            width: 50%;
+            background: white;
+            border-spacing: 1px;
+        }
+
+        td, th {
+            padding: 7px;
+        }
+
+    </style>
+</head>
+<body>
+<br>
+<h1>Управление списком</h1>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Имя пользователя</th>
+        <th>Возраст</th>
+        <th>Изменить</th>
+        <th>Удалить</th>
+
+    </tr>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:utext="${user.id}"></td>
+        <td th:utext="${user.name}"></td>
+        <td th:utext="${user.age}"></td>
+        <td>
+            <form th:action="@{users/edit/{id}(id=${user.id})}" th:object="${user}">
+                <button type="submit">Редактировать</button>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{users/{id}(id=${user.getId()})}" th:object="${user}">
+                <button type="submit">Удалить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<button><a href="new">Создать пользователя</a></button>
+<br>
+</body>
+</html>
